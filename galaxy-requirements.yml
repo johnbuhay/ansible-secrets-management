@@ -1,0 +1,7 @@
+---
+# https://docs.ansible.com/ansible/latest/galaxy.html
+
+# from GitHub, overriding the name
+- src: https://github.com/jnbnyc/ansible-role-manage-secrets.git
+  version: master
+  name: manage_secrets

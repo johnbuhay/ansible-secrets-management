@@ -1,0 +1,29 @@
+---
+# this playbook manages the local requirements using ansible-galaxy
+
+- hosts: localhost
+  become: False
+  tasks:
+    - name: ensure roles directory exists
+      file:
+        path:  roles
+        state: directory
+
+    - name: update gitignore
+      lineinfile:
+        path:   roles/.gitignore
+        regexp: '^\!.gitignore$'
+        line:   '!.gitignore'
+        state:  present
+        create: yes
+
+    - name: update gitignore
+      lineinfile:
+        path:   roles/.gitignore
+        regexp: '^\*$'
+        line:   '*'
+        state:  present
+
+    - name: run ansible galaxy
+      local_action:
+        command ansible-galaxy install -r galaxy-requirements.yml --roles-path roles --force
