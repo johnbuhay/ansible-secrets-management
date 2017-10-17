@@ -1,7 +1,5 @@
 ---
 
-- include_playbook: galaxy.yml
-
 - hosts: localhost
   roles:
     - role: manage_secrets
