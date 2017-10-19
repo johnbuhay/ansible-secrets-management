@@ -15,11 +15,9 @@ docker build --pull -t jnbnyc/secret-mgmt:master .
 ```
 docker run --rm \
     -e ANSIBLE_VAULT_PASSWORD_FILE=vault.secret \
-    -v ${PWD}/vault.secret:/app/vault.secret \
-    -v ${PWD}/secrets.yml:/app/secrets.yml \
-    -v ${PWD}:/app/output \
+    -v ${PWD}/:/app/ \
     jnbnyc/secret-mgmt:master \
-    ansible-playbook site.yml --extra-vars "secrets_file=./secrets.yml" --tags shell
+    ansible-playbook site.yml --extra-vars "secrets_file=./${1:-secrets.yml}" --tags shell
 ```
 
 > Note:
